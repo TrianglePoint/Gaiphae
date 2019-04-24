@@ -194,7 +194,7 @@
 
                var d = parseInt(num1.value.substring(4,6));
 
-               join.years.value = 1900 + y;
+               join.year.value = 1900 + y;
 
                join.month.value = m;
 
@@ -210,7 +210,7 @@
 
                var d = parseInt(num1.value.substring(4,6));
 
-               join.years.value == 2000 + y;
+               join.year.value == 2000 + y;
 
                join.month.value = m;
 
@@ -255,7 +255,6 @@
        
 
        alert("회원가입이 완료되었습니다.");
-
    }
 
  
@@ -263,7 +262,6 @@
    function check(re, what, message) {
 
        if(re.test(what.value)) {
-
            return true;
 
        }
@@ -290,7 +288,7 @@
 
 <h2 align="center" style="font-size:50px;"><b>회원가입</b></font></h2>
 
-<form name="join" onsubmit="return validate();" action="JoinProcess.jsp" enctype="text/plain">
+<form name="join" onsubmit="return validate();" method="post" action="memberJoinAction.me">
 
    <table width="700" height="400" border="2"  align="center" cellspacing="0">
 
@@ -366,7 +364,7 @@
 
            <td>
 
-               <input type="text" style="width:80px" name="years" id="years" readonly/>년
+               <input type="text" style="width:80px" name="year" id="year" readonly/>년
 
                <input type="text" style="width:80px" name="month" id="month" readonly/>월
 
