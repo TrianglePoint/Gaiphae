@@ -7,7 +7,6 @@
 
 <head>
 
-
 <meta charset="UTF-8">
 
 <script language="javascript">
@@ -66,7 +65,7 @@
 
           join.id.value = "";
 
-          join.pw.focus();
+          join.id.focus();
 
           return false;
 
@@ -194,7 +193,7 @@
 
                var d = parseInt(num1.value.substring(4,6));
 
-               join.year.value = 1900 + y;
+               join.years.value = 1900 + y;
 
                join.month.value = m;
 
@@ -210,7 +209,7 @@
 
                var d = parseInt(num1.value.substring(4,6));
 
-               join.year.value == 2000 + y;
+               join.years.value == 2000 + y;
 
                join.month.value = m;
 
@@ -251,10 +250,7 @@
            return false;
 
        }
-
-       
-
-       alert("회원가입이 완료되었습니다.");
+       return true;
    }
 
  
@@ -302,7 +298,7 @@
 
            <td><b>아이디:</b></td>
 
-           <td><input type="text" style="width:170px"id="id" name="id" maxlength="12" /> ※4-12자의 영문 대소문자와 숫자로만 입력</td>
+           <td><input type="text" style="width:170px"id="id" name="id" maxlength="12" autofocus /> ※4-12자의 영문 대소문자와 숫자로만 입력</td>
 
        </tr>
 
@@ -364,7 +360,7 @@
 
            <td>
 
-               <input type="text" style="width:80px" name="year" id="year" readonly/>년
+               <input type="text" style="width:80px" name="years" id="years" readonly/>년
 
                <input type="text" style="width:80px" name="month" id="month" readonly/>월
 

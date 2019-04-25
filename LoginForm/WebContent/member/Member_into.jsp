@@ -1,3 +1,4 @@
+<%@page import="net.member.db.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@ page import="java.sql.*"%>
@@ -11,22 +12,7 @@
 </head>
 <body>
 <% 
-String sql = "select * from member where id=?";
-Connection conn= null;
-ResultSet rs   = null;
-PreparedStatement pstmt =null;
-try { 
-	Context init = new InitialContext();
-    DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
-    conn = ds.getConnection();
-    pstmt= conn.prepareStatement(sql);
-    pstmt.setString(1, request.getParameter("id"));
-    rs = pstmt.executeQuery();
-    rs.next();
-    
-}catch (SQLException e) { // 예외처리
-    out.println("err:"+e.toString());
-} 
+MemberBean bean = (MemberBean)request.getAttribute("memberBean");
 %>
 
 
@@ -42,7 +28,7 @@ try {
 
            <td><b>아이디:</b></td>
 
-           <td><%=rs.getString("id") %></td>
+           <td><%=bean.getId()%></td>
 
        </tr>
 
@@ -50,7 +36,7 @@ try {
 
            <td><b>비번:</b></td>
 
-           <td><%=rs.getString("pw") %></td>
+           <td><%=bean.getPw()%></td>
 
        </tr>
 
@@ -58,7 +44,7 @@ try {
 
            <td><b>메일주소:</b></td>
 
-           <td><%=rs.getString("email") %></td>
+           <td><%=bean.getEmail()%></td>
 
        </tr>
 
@@ -66,7 +52,7 @@ try {
 
            <td><b>이름:</b></td>
 
-           <td><%=rs.getString("name") %></td>
+           <td><%=bean.getName()%></td>
 
        </tr>
 
@@ -80,7 +66,7 @@ try {
 
            <td><b>주민등록번호:</td>
 
-           <td><%=rs.getString("num1") %> </td>
+           <td><%=bean.getNum1()%> </td>
 
        </tr>
 
@@ -89,9 +75,9 @@ try {
            <td><b>생일:</b></td>
 
            <td>
-	<%=rs.getString("years") %>
-	<%=rs.getString("month") %>
-	<%=rs.getString("day") %>
+	<%=bean.getYears() %>
+	<%=bean.getMonth()%>
+	<%=bean.getDay()%>
 
            </td>
 
@@ -103,7 +89,7 @@ try {
 
            <td>
 
-             <%=rs.getString("inter") %>
+             <%=bean.getInter()%>
 
            </td>
 
@@ -117,7 +103,7 @@ try {
 
            </td>
 <td>
-           <%=rs.getString("self") %>
+           <%=bean.getSelf()%>
 </td>
        </tr>
 

@@ -1,7 +1,6 @@
 package net.member.action;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,30 +8,30 @@ import javax.servlet.http.HttpServletResponse;
 import net.member.db.MemberBean;
 import net.member.db.MemberDAO;
 
-public class MemberListAction implements Action {
+public class MemberInfoAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
 		MemberDAO dao = new MemberDAO();
-		List<MemberBean> beans = null;
+		MemberBean bean = new MemberBean();
 		ActionForward forward = null;
-
-		beans = dao.getMemberList();
+		bean.setId(request.getParameter("id"));
+		bean = dao.getMember(bean);
 		dao.close();
-		if(beans == null) {
+		if(bean == null) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('회원 목록 불러오기 실패');"
-					+ "location.href='./BoardList.bo';</script>");
+			out.println("<script>alert('회원 정보 불러오기 실패');"
+					+ "location.href='./memberList.me';</script>");
 			out.close();
 			return null;
 		}
-		request.setAttribute("memberBeanList", beans);
 		forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./member/Member_list.jsp");
+		forward.setPath("./member/Member_into.jsp");
+		request.setAttribute("memberBean", bean);
+		
 		return forward;
 	}
 

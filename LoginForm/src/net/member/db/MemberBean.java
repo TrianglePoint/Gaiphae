@@ -6,7 +6,7 @@ public class MemberBean {
 	String email;
 	String name;
 	String num1;
-	int year;
+	int years;
 	int month;
 	int day;
 	String inter;
@@ -42,11 +42,11 @@ public class MemberBean {
 	public void setNum1(String num1) {
 		this.num1 = num1;
 	}
-	public int getYear() {
-		return year;
+	public int getYears() {
+		return years;
 	}
-	public void setYear(int year) {
-		this.year = year;
+	public void setYears(int years) {
+		this.years = years;
 	}
 	public int getMonth() {
 		return month;

@@ -58,7 +58,7 @@ public class MemberDAO {
 			pstmt.setString(3, bean.getEmail());
 			pstmt.setString(4, bean.getName());
 			pstmt.setString(5, bean.getNum1());
-			pstmt.setInt(6, bean.getYear());
+			pstmt.setInt(6, bean.getYears());
 			pstmt.setInt(7, bean.getMonth());
 			pstmt.setInt(8, bean.getDay());
 			pstmt.setString(9, bean.getInter());
@@ -77,15 +77,56 @@ public class MemberDAO {
 		List<MemberBean> beans = new ArrayList<MemberBean>();
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select * from member");
+			rs = stmt.executeQuery("select id, name from member");
 			while(rs.next()) {
-				ㄴㅁㅇㄴㅁㅇ
-				// 여기할!
+				MemberBean bean = new MemberBean();
+				bean.setId(rs.getString("id"));
+				bean.setName(rs.getString("name"));
+				beans.add(bean);
 			}
+			return beans;
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}
 		return null;	
+	}
+	public MemberBean getMember(MemberBean bean) {
+		try {
+			pstmt = con.prepareStatement("select * from member where id=?");
+			pstmt.setString(1, bean.getId());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bean = new MemberBean();
+				bean.setId(rs.getString("id"));
+				bean.setPw(rs.getString("pw"));
+				bean.setEmail(rs.getString("email"));
+				bean.setName(rs.getString("name"));
+				bean.setNum1(rs.getString("num1"));
+				bean.setYears(rs.getInt("years"));
+				bean.setMonth(rs.getInt("month"));
+				bean.setDay(rs.getInt("day"));
+				bean.setInter(rs.getString("inter"));
+				bean.setSelf(rs.getString("self"));
+			}
+			return bean;
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return null;	
+	}
+	public boolean deleteMember(MemberBean bean) {
+		try {
+			pstmt = con.prepareStatement("delete from member where id=?");
+			pstmt.setString(1, bean.getId());
+			int result = pstmt.executeUpdate();
+			if(result == 0) {
+				return false;
+			}
+			return true;
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}
+		return false;
 	}
 	
 	public void close() {

@@ -30,7 +30,8 @@
 			<div align="center">±€æ¥¿Ã</div>
 		</td>
 		<td>
-			<input name="BOARD_NAME" type="text"/>
+			${id}
+			<input name="BOARD_NAME" type="hidden" value="${id}"/>
 		</td>
 	</tr>
 	<tr>

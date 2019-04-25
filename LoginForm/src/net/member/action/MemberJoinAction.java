@@ -23,7 +23,7 @@ public class MemberJoinAction implements Action{
 		bean.setEmail(request.getParameter("email"));
 		bean.setName(request.getParameter("name"));
 		bean.setNum1(request.getParameter("num1"));
-		bean.setYear(Integer.parseInt(request.getParameter("year")));
+		bean.setYears(Integer.parseInt(request.getParameter("years")));
 		bean.setMonth(Integer.parseInt(request.getParameter("month")));
 		bean.setDay(Integer.parseInt(request.getParameter("day")));
 		String[] inters = request.getParameterValues("inter");
@@ -35,23 +35,22 @@ public class MemberJoinAction implements Action{
 		bean.setInter(inter);
 		bean.setSelf(request.getParameter("self"));
 		
-		ActionForward forward = new ActionForward();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		if(dao.insertMember(bean)) {
-			forward.setRedirect(true);
-			forward.setPath("./memberLogin.me");
-
 			dao.close();
-			out.println("<script>alert('회원가입 끝!');</script>");
-			return forward;
+			out.println("<script>alert('회원가입 끝!'); "
+					+ "location.href='./memberLogin.me'</script>");
+			out.close();
+			return null;
 		}
-
-		forward.setRedirect(true);
-		forward.setPath("./memberJoin.me");
 		dao.close();
-		out.println("<script>alert('회원가입이 안됩니다');</script>");
-		return forward;
+		out.println("<script>alert('회원가입이 안됩니다');"
+				+ "location.href='./memberJoin.me';</script>");
+		out.close();
+		return null;
 	}
 
 }

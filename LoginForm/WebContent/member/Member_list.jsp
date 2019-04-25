@@ -1,3 +1,5 @@
+<%@page import="net.member.db.MemberBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="java.sql.*"%>
@@ -15,7 +17,7 @@
 	width : 846px;
 	height :648px;  
 	overflow: hidden; 
-	background-image : url('login.JPG'); 
+	background-image : url('./image/login.JPG'); 
 	margin-top: 50;
 	}
 h1.title{
@@ -40,17 +42,7 @@ text-align:center;
 <h1 class = "title"/>
 
 <%
-String sql = "select id,name from member";
-Connection conn= null;
-ResultSet rs   = null;
-PreparedStatement pstmt =null;
-
-try { 
-   Context init = new InitialContext();
-    DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
-    conn = ds.getConnection();
-    pstmt= conn.prepareStatement(sql);
-    rs = pstmt.executeQuery();
+List<MemberBean> beans = (List<MemberBean>)request.getAttribute("memberBeanList");
 %><table border="1" cellspacing="0">
 <tr>
 <td>ID</td>
@@ -58,23 +50,18 @@ try {
 <td>삭제</td>
 </tr>
 <%
-    while(rs.next()) {
+    for(MemberBean bean : beans) {
 %><tr>
 
-<td><a href ="./Member_into.jsp?id=<%= rs.getString("id") %>"><%= rs.getString("id") %></a></td>
-<td><%=rs.getString("name")%></td>
+<td><a href ="./memberInfo.me?id=<%= bean.getId() %>"><%= bean.getId() %></a></td>
+<td><%=bean.getName()%></td>
 <td>
-<a href ="./Member_delete.jsp?id=<%= rs.getString("id") %>">삭제하기</a></a> 
+<a href ="./memberDelete.me?id=<%= bean.getId() %>">삭제하기</a></a> 
 </td>
 </tr>
 <%
     }
 %></table></div>
-<%
-} catch (SQLException e) { // 예외처리
-      out.println("err:"+e.toString());
-} 
-%>
 
 </body>
 </html>

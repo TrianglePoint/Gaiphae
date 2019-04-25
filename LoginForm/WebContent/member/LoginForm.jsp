@@ -9,7 +9,7 @@
 	width : 846px;
 	height :648px;  
 	overflow: hidden; 
-	background-image : url('login.JPG'); 
+	background-image : url('./image/login.JPG'); 
 	margin-top: 50;
 	}
 h1.title{
@@ -41,7 +41,7 @@ text-align:center;
 
 <tr>
 <td>아이디</td>
-<td><input type="text" name="id" style="width:250px" ></td>
+<td><input type="text" name="id" style="width:250px" autofocus></td>
 </tr>
 
 <tr>

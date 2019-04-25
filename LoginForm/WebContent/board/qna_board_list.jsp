@@ -14,12 +14,27 @@
 
 <html>
 <head>
-	<title>MVC 게시판</title>
+<title>MVC 게시판</title>
+<style>
+	.entry{
+	width : 846px;
+	height :648px;  
+	overflow: hidden; 
+	<%
+	if((session.getAttribute("id")+"").equals("admin")){
+	%>
+	background-image : url('./image/admin.JPG');
+	<%}else{%>
+	background-image : url('./image/member.jpg');
+	<%}%>
+	margin-top: 50;
+	}
+</style>
 </head>
 
 <body>
 <!-- 게시판 리스트 -->
-<table width=50% border="0" cellpadding="0" cellspacing="0">
+<table class="entry" width=50% border="0" cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="4">MVC 게시판</td>
 		<td align=right>
