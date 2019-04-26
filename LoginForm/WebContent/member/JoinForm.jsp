@@ -7,7 +7,6 @@
 
 <head>
 
-
 <meta charset="UTF-8">
 
 <script language="javascript">
@@ -66,7 +65,7 @@
 
           join.id.value = "";
 
-          join.pw.focus();
+          join.id.focus();
 
           return false;
 
@@ -251,11 +250,7 @@
            return false;
 
        }
-
-       
-
-       alert("회원가입이 완료되었습니다.");
-
+       return true;
    }
 
  
@@ -263,7 +258,6 @@
    function check(re, what, message) {
 
        if(re.test(what.value)) {
-
            return true;
 
        }
@@ -290,7 +284,7 @@
 
 <h2 align="center" style="font-size:50px;"><b>회원가입</b></font></h2>
 
-<form name="join" onsubmit="return validate();" action="JoinProcess.jsp" enctype="text/plain">
+<form name="join" onsubmit="return validate();" method="post" action="memberJoinAction.me">
 
    <table width="700" height="400" border="2"  align="center" cellspacing="0">
 
@@ -304,7 +298,7 @@
 
            <td><b>아이디:</b></td>
 
-           <td><input type="text" style="width:170px"id="id" name="id" maxlength="12" /> ※4-12자의 영문 대소문자와 숫자로만 입력</td>
+           <td><input type="text" style="width:170px"id="id" name="id" maxlength="12" autofocus /> ※4-12자의 영문 대소문자와 숫자로만 입력</td>
 
        </tr>
 

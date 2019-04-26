@@ -9,7 +9,7 @@
 	width : 846px;
 	height :648px;  
 	overflow: hidden; 
-	background-image : url('login.JPG'); 
+	background-image : url('./image/login.JPG'); 
 	margin-top: 50;
 	}
 h1.title{
@@ -33,7 +33,7 @@ text-align:center;
 <div class = "entry">
 <h1 class = "title"/>
 </div>
-<form action="LoginProcess.jsp">
+<form action="memberLoginAction.me" method="post">
 <table width="620" height="50" border="0"  cellspacing="1">
 <tr>
  <td align="center" colspan="2"><font color=white size="5em"><p class="np">로그인</p></font></td>
@@ -41,7 +41,7 @@ text-align:center;
 
 <tr>
 <td>아이디</td>
-<td><input type="text" name="id" style="width:250px" ></td>
+<td><input type="text" name="id" style="width:250px" autofocus></td>
 </tr>
 
 <tr>
@@ -53,7 +53,7 @@ text-align:center;
 <tr>
 <td colspan="2"><br><br>
 <input type="submit" value="로그인"><br><br>
-<a href="JoinForm.jsp">회원가입</a></td>
+<a href="./memberJoin.me">회원가입</a></td>
 </tr>
 </table>
 </form>
